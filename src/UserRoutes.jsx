@@ -3,6 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Layout } from 'modules/Phonebook/Layout/Layout';
 
+import { PrivateRoute } from 'modules/Phonebook/PrivateRoute/PrivateRoute';
+import { PublicRoute } from 'modules/Phonebook/PublicRoute/PublicRoute';
+
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
@@ -13,9 +16,13 @@ const UserRoutes = () => {
     <Suspense fallback={<p>...loading</p>}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/contacts" element={<ContactsPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path="/contacts" element={<ContactsPage />} />
+          </Route>
           <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>

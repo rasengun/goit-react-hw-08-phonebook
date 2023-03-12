@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import s from './button.module.css';
 
 const Button = ({ children, type = 'submit' }) => {
@@ -9,3 +11,8 @@ const Button = ({ children, type = 'submit' }) => {
 };
 
 export default Button;
+
+Button.propTypes = {
+  type: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};

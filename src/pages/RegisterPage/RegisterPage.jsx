@@ -10,7 +10,6 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
 
   const handleSignup = data => {
-    console.log(data);
     dispatch(signup(data));
   };
 

@@ -1,6 +1,6 @@
-import TextField from './textFields';
-
 import PropTypes from 'prop-types';
+
+import TextField from './textFields';
 
 import useForm from 'shared/hooks/useForm';
 
@@ -8,31 +8,30 @@ import { fields } from './fields';
 import initialState from './initialState';
 import Button from 'shared/components/Button';
 
-import s from './registerForm.module.css';
+import s from './login-form.module.css';
 
-const RegisterForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit }) => {
   const { state, handleChange, handleSubmit } = useForm({
     initialState,
     onSubmit,
   });
 
-  const { name, email, password } = state;
+  const { email, password } = state;
 
   return (
     <form className={s.wrapper} onSubmit={handleSubmit}>
-      <TextField value={name} handleChange={handleChange} {...fields.name} />
       <TextField value={email} handleChange={handleChange} {...fields.email} />
       <TextField
         value={password}
         handleChange={handleChange}
         {...fields.password}
       />
-      <Button>Register</Button>
+      <Button>Login</Button>
     </form>
   );
 };
-export default RegisterForm;
+export default LoginForm;
 
-RegisterForm.propTypes = {
+LoginForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
